@@ -13,6 +13,11 @@ pnpm dev
 # or
 bun dev
 ```
+Ensure both servers are running:
+
+Next.js frontend: npm run dev (port 3000)
+
+Node.js backend: npm run server (port 3001)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

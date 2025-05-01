@@ -139,7 +139,11 @@ body {
     background: linear-gradient(45deg, #fffc51, #5dfff4);
     z-index: 1000; /* Ensure it stays on top */
 }
-
+.logoIcon{
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    margin-right: 0.5rem; /* Space between icon and text */
+}
 .mobileNavbar {
     display: flex;
     justify-content: space-between; /* Distribute space evenly */
@@ -304,3 +308,21 @@ body {
     padding: 0 2rem;
 }
 
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px; /* Adjust width */
+}
+
+select, textarea, button {
+    width: 100%;
+}
+textarea {
+    background: linear-gradient(45deg, #fffc51, #5dfff4);
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    resize: none; /* Optional: prevents resizing */
+}

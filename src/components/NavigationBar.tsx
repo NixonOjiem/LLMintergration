@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Image from 'next/image';
+import logo from '../assets/logo.jpg';
 
 function NavigationBar() {
     return (
@@ -6,7 +8,7 @@ function NavigationBar() {
             <a href="#" className="companyName">
                 LLM Intergration
             </a>
-            <img src="/logo.png" alt="Logo" className="logoIcon" />
+            <Image src={logo} alt="Logo" className="logoIcon" />
             <nav className="navbar">
                 <a href="#">Portfolio</a>
                 <a href="#">About me</a>
