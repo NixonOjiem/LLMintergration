@@ -7,31 +7,42 @@ import { FormEvent } from 'react';
 function QueryComponent() {
     const [query, setQuery] = useState('');
     const [answer, setAnswer] = useState('');
-    const [service, setService] = useState('gemini');
+    const [service, setService] = useState('deepseek');
     const [loading, setLoading] = useState(false);
 
+    // QueryComponent.tsx - Revised error handling
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        console.log('Submitting query:', query, 'to service:', service);
         try {
-            const response = await fetch('http://localhost:3001/api/query', {
+            const response = await fetch('/api/query', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query, service }),
             });
 
-            const data = await response.json();
+            const responseText = await response.text();
+            let data;
+
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                throw new Error(`Invalid server response: ${responseText.substring(0, 100)}`);
+            }
 
             if (!response.ok) {
-                throw new Error(data.error || data.details?.error?.message || 'Request failed');
+                const errorMessage = data?.error || `Service unavailable (${response.status})`;
+                const suggestions = data?.suggestion?.join('\n') || 'Please try again later';
+                throw new Error(`${errorMessage}\nSuggestions:\n${suggestions}`);
             }
 
             setAnswer(data.answer);
         } catch (error) {
-            console.error('Submission error:', error);
-            const errorMessage = error instanceof Error ?
-                error.message.replace(/\\n/g, '\n') : // Handle newlines in error messages
-                'Unknown error occurred';
+            let errorMessage = 'Service unavailable. Please try again later.';
+            if (error instanceof Error) {
+                errorMessage = error.message.replace(/\\n/g, '\n');
+            }
             setAnswer(`Error: ${errorMessage}`);
         }
         setLoading(false);
@@ -44,7 +55,7 @@ function QueryComponent() {
             <form onSubmit={handleSubmit}>
                 <select value={service} onChange={(e) => setService(e.target.value)}>
                     <option value="deepseek">DeepSeek</option>
-                    {/* <option value="gemini">Gemini</option> */}
+                    <option value="gemini">Gemini</option>
                     {/* <option value="copilot">Copilot</option> */}
                 </select >
 
