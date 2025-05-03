@@ -4,10 +4,10 @@ function MobileNavigationBar() {
     return (
         <footer className="mobileNavigationBar">
             <nav className="mobileNavbar">
-                <a href="#">Portfolio</a>
-                <a href="#">About me</a>
-                <a href="#">Services</a>
-                <a href="#">Recent Projects</a>
+                <a href="https://myportfolio-cde82.web.app/">Portfolio</a>
+                <a href="https://myportfolio-cde82.web.app/about.html">About me</a>
+                <a href="https://myportfolio-cde82.web.app/services.html">Services</a>
+                <a href="https://myportfolio-cde82.web.app/project.html">Recent Projects</a>
             </nav>
         </footer>
     )
