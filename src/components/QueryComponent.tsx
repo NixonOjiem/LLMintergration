@@ -7,7 +7,7 @@ import { FormEvent } from 'react';
 function QueryComponent() {
     const [query, setQuery] = useState('');
     const [answer, setAnswer] = useState('');
-    const [service, setService] = useState('deepseek');
+    const [service, setService] = useState('gemini');
     const [loading, setLoading] = useState(false);
 
     // QueryComponent.tsx - Revised error handling
@@ -54,7 +54,7 @@ function QueryComponent() {
             {/* <h1>LLM Query Interface</h1> */}
             <form onSubmit={handleSubmit}>
                 <select value={service} onChange={(e) => setService(e.target.value)}>
-                    <option value="deepseek">DeepSeek</option>
+                    {/* <option value="deepseek">DeepSeek</option> */}
                     <option value="gemini">Gemini</option>
                     {/* <option value="copilot">Copilot</option> */}
                 </select >
